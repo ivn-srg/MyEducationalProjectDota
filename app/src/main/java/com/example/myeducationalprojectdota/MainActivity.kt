@@ -1,23 +1,18 @@
 package com.example.myeducationalprojectdota
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -29,29 +24,19 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
-import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -62,7 +47,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
-import com.example.myeducationalprojectdota.R
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,7 +65,9 @@ fun MainScreen() {
     val photos = remember { // Создаем список фотографий
         mutableListOf(
             R.drawable.bg_video_preview1,
-            R.drawable.bg_video_preview2
+            R.drawable.bg_video_preview2,
+            R.drawable.bg_photo_preview1,
+            R.drawable.bg_photo_preview2
         )
     }
 
@@ -98,35 +84,55 @@ fun MainScreen() {
             Column(modifier = Modifier
                 .padding(horizontal = 20.dp,)
                 .padding(top = 305.dp)) {
-                Row {
-                    Card (
+                Box {
+                    Box(contentAlignment = Alignment.Center,
                         modifier = Modifier
-                            .width(88.dp)
-                            .height(88.dp)
-                            .background(Color.Black)
-                            .border(width = 3.dp, color = Color(0XFF1F2430)),
-                        shape = RoundedCornerShape(12.dp),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
+                            .background(Color.Black, RoundedCornerShape(20.dp))
+                            .border(width = 2.dp, color = Color(0XFF1F2430))
+                            .clip(RoundedCornerShape(12.dp)),
                     ) {
-                        Box(contentAlignment = Alignment.Center,
-                            modifier = Modifier.background(Color.Black)) {
-                            Image(painter = painterResource(id = R.drawable.bg_logo),
-                                contentDescription = "dota_logo",
-                                modifier = Modifier
-                                    .padding(17.dp)
-                                    .width(54.dp)
-                                    .height(54.dp))
-                        }
+                        Image(painter = painterResource(id = R.drawable.bg_logo),
+                            contentDescription = "dota_logo",
+                            modifier = Modifier
+                                .padding(17.dp)
+                                .width(54.dp)
+                                .height(54.dp))
                     }
+//                    Card (
+//                        modifier = Modifier
+//                            .width(88.dp)
+//                            .height(88.dp)
+//                            .background(Color.Black, RoundedCornerShape(20.dp)) // 0XFF1F2430
+//                            .border(width = 3.dp, color = Color.White).clip(RoundedCornerShape(12.dp)),
+//                        shape = RoundedCornerShape(30.dp),
+//                        elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
+//                    ) {
+////                        Image(painter = painterResource(id = R.drawable.bg_logo),
+////                            contentDescription = "dota_logo",
+////                            modifier = Modifier
+////                                .padding(17.dp)
+////                                .width(54.dp)
+////                                .height(54.dp).border(width = 3.dp))
+//                        Box(contentAlignment = Alignment.Center,
+//                            modifier = Modifier.background(Color.Black)) {
+//                            Image(painter = painterResource(id = R.drawable.bg_logo),
+//                                contentDescription = "dota_logo",
+//                                modifier = Modifier
+//                                    .padding(17.dp)
+//                                    .width(54.dp)
+//                                    .height(54.dp))
+//                        }
+//                    }
                     Spacer(modifier = Modifier.width(12.dp))
 
-                    Column {
+                    Column(modifier = Modifier.padding(start = 95.dp, top = 35.dp)
+                    ) {
                             Text(
                                 text = "DoTA 2",
                                 style = TextStyle(
                                     fontSize = 20.sp,
                                     lineHeight = 26.sp,
-//                                fontFamily = FontFamily(Font(R.font.sk-modernist)),
+                                    fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                                     fontWeight = FontWeight(700),
                                     color = Color.White,
                                     letterSpacing = 0.5.sp,
@@ -142,7 +148,7 @@ fun MainScreen() {
                                 text = "70M",
                                 style = TextStyle(
                                     fontSize = 12.sp,
-//                                    fontFamily = FontFamily(Font(R.font.sk-modernist)),
+                                    fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                                     fontWeight = FontWeight(400),
                                     color = Color(0xFF45454D),
                                     letterSpacing = 0.5.sp,
@@ -164,7 +170,7 @@ fun MainScreen() {
                         style = TextStyle(
                             fontSize = 12.sp,
                             lineHeight = 19.sp,
-//                            fontFamily = FontFamily(Font(R.font.sk-modernist)),
+                            fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                             fontWeight = FontWeight(400),
                             color = Color(0xB2EEF2FB),
 
@@ -199,7 +205,7 @@ fun MainScreen() {
                     text = "Review & Ratings",
                     style = TextStyle(
                         fontSize = 16.sp,
-//                        fontFamily = FontFamily(Font(R.font.sk-modernist)),
+                        fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                         fontWeight = FontWeight(700),
                         color = Color.White,
                         letterSpacing = 0.6.sp,
@@ -213,7 +219,7 @@ fun MainScreen() {
                         text = "4.1",
                         style = TextStyle(
                             fontSize = 48.sp,
-//                            fontFamily = FontFamily(Font(R.font.sk-modernist)),
+                            fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                             fontWeight = FontWeight(700),
                             color = Color.White,
                         )
@@ -237,7 +243,7 @@ fun MainScreen() {
                             text = "70M Reviews",
                             style = TextStyle(
                                 fontSize = 12.sp,
-//                                    fontFamily = FontFamily(Font(R.font.sk-modernist)),
+                                fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                                 fontWeight = FontWeight(400),
                                 color = Color(0xFFA8ADB7),
                                 letterSpacing = 0.5.sp,
@@ -265,7 +271,7 @@ fun MainScreen() {
                                 text = "Auguste Conte",
                                 style = TextStyle(
                                     fontSize = 16.sp,
-//                                fontFamily = FontFamily(Font(R.font.sk-modernist)),
+                                    fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                                     fontWeight = FontWeight(400),
                                     color = Color(0xFFFFFFFF),
                                     letterSpacing = 0.5.sp,
@@ -275,7 +281,7 @@ fun MainScreen() {
                                 text = "February 14, 2019",
                                 style = TextStyle(
                                     fontSize = 12.sp,
-//                                fontFamily = FontFamily(Font(R.font.sk-modernist)),
+                                    fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                                     fontWeight = FontWeight(400),
                                     color = Color(0x66FFFFFF),
 
@@ -291,7 +297,7 @@ fun MainScreen() {
                         style = TextStyle(
                             fontSize = 12.sp,
                             lineHeight = 20.sp,
-//                            fontFamily = FontFamily(Font(R.font.sk-modernist)),
+                            fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                             fontWeight = FontWeight(400),
                             color = Color(0xFFA8ADB7),
 
@@ -326,7 +332,7 @@ fun MainScreen() {
                                 text = "Jang Marcelino",
                                 style = TextStyle(
                                     fontSize = 16.sp,
-//                                fontFamily = FontFamily(Font(R.font.sk-modernist)),
+                                    fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                                     fontWeight = FontWeight(400),
                                     color = Color(0xFFFFFFFF),
                                     letterSpacing = 0.5.sp,
@@ -336,7 +342,7 @@ fun MainScreen() {
                                 text = "February 14, 2019",
                                 style = TextStyle(
                                     fontSize = 12.sp,
-//                                fontFamily = FontFamily(Font(R.font.sk-modernist)),
+                                    fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                                     fontWeight = FontWeight(400),
                                     color = Color(0x66FFFFFF),
 
@@ -352,7 +358,7 @@ fun MainScreen() {
                         style = TextStyle(
                             fontSize = 12.sp,
                             lineHeight = 20.sp,
-//                            fontFamily = FontFamily(Font(R.font.sk-modernist)),
+                            fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                             fontWeight = FontWeight(400),
                             color = Color(0xFFA8ADB7),
 
@@ -376,7 +382,7 @@ fun MainScreen() {
                         Text(text = "Install",
                             style = TextStyle(
                                 fontSize = 20.sp,
-//                                fontFamily = FontFamily(Font(R.font.sk-modernist)),
+                                fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                                 fontWeight = FontWeight(700),
                                 color = Color(0xFF050B18),
 
