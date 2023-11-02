@@ -131,7 +131,11 @@ fun MainScreen() {
                             verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier.width(130.dp)
                         ) {
-                            RatingBar(rating = 4.0f, activeColor = Color(0XFFF4D144), inactiveColor = Color(0XFF282E3E), size = 13.dp)
+                            RatingBar(
+                                rating = 4.0f,
+                                activeColor = Color(0XFFF4D144),
+                                inactiveColor = Color(0XFF282E3E),
+                                size = 13.dp)
                             Text(
                                 text = stringResource(id = R.string.number_of_reviews_short),
                                 style = TextStyle(
@@ -141,7 +145,7 @@ fun MainScreen() {
                                     color = Color(0xFF45454D),
                                     letterSpacing = 0.5.sp,
                                 ),
-                                modifier = Modifier.padding(start = 8.dp)
+                                modifier = Modifier.padding(start = 5.dp)
                             )
                         }
 
@@ -223,7 +227,11 @@ fun MainScreen() {
                                 .height(20.dp),
 //                            horizontalArrangement = Arrangement.Start
                         ){
-                            RatingBar(rating = 4.0f, activeColor = Color(0XFFF4D144), inactiveColor = Color(0XFF282E3E), size = 13.dp)
+                            RatingBar(
+                                rating = 4.0f,
+                                activeColor = Color(0XFFF4D144),
+                                inactiveColor = Color(0XFF282E3E),
+                                size = 14.dp)
 
                         }
                         Text(
