@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MyEducationalProjectDota</string>
+
+    <string name="game_name">Dota 2</string>
+    <string name="number_of_reviews_short">70M</string>
+    <string name="tag1">MOBA</string>
+    <string name="tag2">STRATEGY</string>
+    <string name="tag3">MULTIPLAYER</string>
+    <string name="game_description">Dota 2 is a multiplayer online battle arena (MOBA) game which has two teams of five players compete to collectively destroy a large structure defended by the opposing team known as the Ancient, whilst defending their own.</string>
+    <string name="review_title">Review &amp; Ratings</string>
+    <string name="review_value">4.1</string>
+    <string name="number_of_reviews_long">70M Reviews</string>
+    <string name="commenterName1">Auguste Conte</string>
+    <string name="date">February 14, 2019</string>
+    <string name="comment1">“Once you start to learn its secrets, there’s a wild and exciting variety of play here that’s unmatched, even by its peers."</string>
+    <string name="commenterName2">Jang Marcelino</string>
+    <string name="comment2">“Once you start to learn its secrets, there’s a wild and exciting variety of play here that’s unmatched, even by its peers."</string>
+    <string name="text_of_button">Install</string>
+    <string name="click_text">The button has tapped</string>
+
+
+</resources>
