@@ -1,4 +1,4 @@
-package com.example.myeducationalprojectdota
+package com.example.myeducationalprojectdota.comments
 
 data class CommentItem(
     val avatarImageId: Int,
