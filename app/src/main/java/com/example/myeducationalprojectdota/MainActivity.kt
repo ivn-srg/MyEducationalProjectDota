@@ -3,6 +3,7 @@ package com.example.myeducationalprojectdota
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -37,7 +38,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -52,7 +55,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
             MainScreen()
@@ -84,12 +86,14 @@ fun MainScreen() {
             Column(modifier = Modifier
                 .padding(horizontal = 20.dp,)
                 .padding(top = 305.dp)) {
-                Box {
-                    Box(contentAlignment = Alignment.Center,
+                Row {
+                    Box (
                         modifier = Modifier
-                            .background(Color.Black, RoundedCornerShape(20.dp))
-                            .border(width = 2.dp, color = Color(0XFF1F2430))
-                            .clip(RoundedCornerShape(12.dp)),
+                            .clip(RoundedCornerShape(20.dp))
+                            .width(88.dp)
+                            .height(88.dp)
+                            .background(Color.Black)
+                            .border(width = 2.dp, color = Color(0XFF1F2430)),
                     ) {
                         Image(painter = painterResource(id = R.drawable.bg_logo),
                             contentDescription = "dota_logo",
@@ -98,37 +102,13 @@ fun MainScreen() {
                                 .width(54.dp)
                                 .height(54.dp))
                     }
-//                    Card (
-//                        modifier = Modifier
-//                            .width(88.dp)
-//                            .height(88.dp)
-//                            .background(Color.Black, RoundedCornerShape(20.dp)) // 0XFF1F2430
-//                            .border(width = 3.dp, color = Color.White).clip(RoundedCornerShape(12.dp)),
-//                        shape = RoundedCornerShape(30.dp),
-//                        elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
-//                    ) {
-////                        Image(painter = painterResource(id = R.drawable.bg_logo),
-////                            contentDescription = "dota_logo",
-////                            modifier = Modifier
-////                                .padding(17.dp)
-////                                .width(54.dp)
-////                                .height(54.dp).border(width = 3.dp))
-//                        Box(contentAlignment = Alignment.Center,
-//                            modifier = Modifier.background(Color.Black)) {
-//                            Image(painter = painterResource(id = R.drawable.bg_logo),
-//                                contentDescription = "dota_logo",
-//                                modifier = Modifier
-//                                    .padding(17.dp)
-//                                    .width(54.dp)
-//                                    .height(54.dp))
-//                        }
-//                    }
                     Spacer(modifier = Modifier.width(12.dp))
 
-                    Column(modifier = Modifier.padding(start = 95.dp, top = 35.dp)
+                    Column(
+                        modifier = Modifier.padding(top = 38.dp)
                     ) {
                             Text(
-                                text = "DoTA 2",
+                                text = stringResource(id = R.string.game_name),
                                 style = TextStyle(
                                     fontSize = 20.sp,
                                     lineHeight = 26.sp,
@@ -145,7 +125,7 @@ fun MainScreen() {
                         ) {
                             RatingBar(rating = 4.0f, activeColor = Color(0XFFF4D144), inactiveColor = Color(0XFF282E3E), size = 13.dp)
                             Text(
-                                text = "70M",
+                                text = stringResource(id = R.string.number_of_reviews_short),
                                 style = TextStyle(
                                     fontSize = 12.sp,
                                     fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
@@ -165,7 +145,7 @@ fun MainScreen() {
 
                 Row {
                     Text(
-                        text = "Dota 2 is a multiplayer online battle arena (MOBA) game which has two teams of five players compete to collectively destroy a large structure defended by the opposing team known as the \"Ancient\", whilst defending their own.",
+                        text = stringResource(id = R.string.game_description),
                         modifier = Modifier,
                         style = TextStyle(
                             fontSize = 12.sp,
@@ -202,7 +182,7 @@ fun MainScreen() {
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = "Review & Ratings",
+                    text = stringResource(id = R.string.review_title),
                     style = TextStyle(
                         fontSize = 16.sp,
                         fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
@@ -216,7 +196,7 @@ fun MainScreen() {
 
                 Row {
                     Text(
-                        text = "4.1",
+                        text = stringResource(id = R.string.review_value),
                         style = TextStyle(
                             fontSize = 48.sp,
                             fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
@@ -240,7 +220,7 @@ fun MainScreen() {
 
                         }
                         Text(
-                            text = "70M Reviews",
+                            text = stringResource(id = R.string.number_of_reviews_long),
                             style = TextStyle(
                                 fontSize = 12.sp,
                                 fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
@@ -262,13 +242,14 @@ fun MainScreen() {
                             contentDescription = "avatar_1",
                             modifier = Modifier
                                 .size(40.dp)
-                                .clip(CircleShape)
+                                .clip(CircleShape),
+                            contentScale = ContentScale.Crop
                         )
 
                         Spacer(modifier = Modifier.width(8.dp))
                         Column {
                             Text(
-                                text = "Auguste Conte",
+                                text = stringResource(id = R.string.commenter1),
                                 style = TextStyle(
                                     fontSize = 16.sp,
                                     fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
@@ -278,7 +259,7 @@ fun MainScreen() {
                                 ))
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
-                                text = "February 14, 2019",
+                                text = stringResource(id = R.string.date),
                                 style = TextStyle(
                                     fontSize = 12.sp,
                                     fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
@@ -293,7 +274,7 @@ fun MainScreen() {
                     Spacer(modifier = Modifier.height(15.dp))
 
                     Text(
-                        text = "“Once you start to learn its secrets, there’s a wild and exciting variety of play here that’s unmatched, even by its peers.”",
+                        text = stringResource(id = R.string.comment1),
                         style = TextStyle(
                             fontSize = 12.sp,
                             lineHeight = 20.sp,
@@ -323,13 +304,14 @@ fun MainScreen() {
                             contentDescription = "avatar_2",
                             modifier = Modifier
                                 .size(40.dp)
-                                .clip(CircleShape)
+                                .clip(CircleShape),
+                            contentScale = ContentScale.Crop
                         )
 
                         Spacer(modifier = Modifier.width(8.dp))
                         Column {
                             Text(
-                                text = "Jang Marcelino",
+                                text = stringResource(id = R.string.commenter2),
                                 style = TextStyle(
                                     fontSize = 16.sp,
                                     fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
@@ -339,7 +321,7 @@ fun MainScreen() {
                                 ))
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
-                                text = "February 14, 2019",
+                                text = stringResource(id = R.string.date),
                                 style = TextStyle(
                                     fontSize = 12.sp,
                                     fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
@@ -354,14 +336,13 @@ fun MainScreen() {
                     Spacer(modifier = Modifier.height(15.dp))
 
                     Text(
-                        text = "“Once you start to learn its secrets, there’s a wild and exciting variety of play here that’s unmatched, even by its peers.”",
+                        text = stringResource(id = R.string.comment2),
                         style = TextStyle(
                             fontSize = 12.sp,
                             lineHeight = 20.sp,
                             fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
                             fontWeight = FontWeight(400),
                             color = Color(0xFFA8ADB7),
-
                             letterSpacing = 0.5.sp,
                         )
                     )
@@ -379,7 +360,7 @@ fun MainScreen() {
                             )
 
                     ) {
-                        Text(text = "Install",
+                        Text(text = stringResource(id = R.string.text_of_button),
                             style = TextStyle(
                                 fontSize = 20.sp,
                                 fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
