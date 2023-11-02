@@ -26,6 +26,7 @@ import androidx.compose.material.Chip
 import androidx.compose.material.ChipDefaults
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Divider
@@ -68,11 +69,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     val photos = remember { // Создаем список фотографий
-        mutableListOf(
-            R.drawable.bg_video_preview1,
-            R.drawable.bg_video_preview2,
-            R.drawable.bg_photo_preview1,
-            R.drawable.bg_photo_preview2
+        mutableListOf( 
+            PhotoItem(id = R.drawable.bg_video_preview1, isVideo = true),
+            PhotoItem(id = R.drawable.bg_video_preview2),
+            PhotoItem(id = R.drawable.bg_photo_preview1),
+            PhotoItem(id = R.drawable.bg_photo_preview2)
         )
     }
 
@@ -181,16 +182,7 @@ fun MainScreen() {
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     itemsIndexed(photos) {_, photoIndex ->
-                        Image(
-                            painter = painterResource(id = photoIndex),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .width(240.dp)
-                                .height(135.dp)
-                                .padding(end = 15.dp)
-                                .clip(RoundedCornerShape(18.dp))
-
-                        )
+                        DrawMedia(photoIndex)
                     }
                 }
 
@@ -393,6 +385,40 @@ fun MainScreen() {
     }
 }
 
+@Composable
+fun DrawMedia(mediaItem: PhotoItem) {
+    Box (
+        modifier = Modifier
+            .padding(end = 15.dp)
+    ){
+        Image(
+            painter = painterResource(id = mediaItem.id),
+            contentDescription = null,
+            modifier = Modifier
+                .width(240.dp)
+                .height(135.dp)
+                .clip(RoundedCornerShape(18.dp))
+        )
+        if (mediaItem.isVideo) {
+            Box(
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .size(40.dp)
+                    .align(Alignment.Center)
+                    .background(Color(0x2DFFFFFF))
+
+            )
+            Icon(
+                imageVector = Icons.Default.PlayArrow,
+                contentDescription = null,
+                tint = Color.White,
+                modifier = Modifier
+                    .align(Alignment.Center)
+            )
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun CreateLabels(genre: Int) {
@@ -419,7 +445,6 @@ private fun writeLogs(){
 @Composable
 fun RatingBar(rating: Float, maxRating: Int = 5, activeColor: Color, inactiveColor: Color, size: Dp) {
     Row(
-//        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         for (i in 0 until maxRating) {
