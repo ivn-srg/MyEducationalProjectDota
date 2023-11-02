@@ -3,7 +3,6 @@ package com.example.myeducationalprojectdota
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -29,8 +28,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -59,6 +56,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
             MainScreen()
@@ -181,12 +179,10 @@ fun MainScreen() {
 
                 LazyRow(
                     modifier = Modifier.fillMaxWidth()
-//                    contentPadding = PaddingValues(16.dp)
                 ) {
-                    items(photos.size) { photoIndex ->
-                        // Элемент списка (фотография)
+                    itemsIndexed(photos) {_, photoIndex ->
                         Image(
-                            painter = painterResource(id = photos[photoIndex]),
+                            painter = painterResource(id = photoIndex),
                             contentDescription = null,
                             modifier = Modifier
                                 .width(240.dp)
@@ -438,15 +434,6 @@ fun RatingBar(rating: Float, maxRating: Int = 5, activeColor: Color, inactiveCol
             )
         }
     }
-}
-
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
 }
 
 @Preview(showBackground = true)
