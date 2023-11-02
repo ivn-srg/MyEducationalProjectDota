@@ -18,10 +18,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Chip
+import androidx.compose.material.ChipDefaults
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
@@ -62,6 +66,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainScreen() {
     val photos = remember { // Создаем список фотографий
@@ -73,15 +78,19 @@ fun MainScreen() {
         )
     }
 
+    val genresGame = remember {
+        mutableListOf(R.string.tag1, R.string.tag2, R.string.tag3)
+    }
+
     Surface  {
         Box (modifier = Modifier
             .background(Color(0xFF050B18))
             .verticalScroll(rememberScrollState())) {
             Image(painter = painterResource(id = R.drawable.bg_header),
-                    contentDescription = "header",
-                    modifier = Modifier
-                        .width(628.dp)
-                        .height(368.07339.dp))
+                contentDescription = "header",
+                modifier = Modifier
+                    .width(628.dp)
+                    .height(368.07339.dp))
 
             Column(modifier = Modifier
                 .padding(horizontal = 20.dp,)
@@ -107,17 +116,17 @@ fun MainScreen() {
                     Column(
                         modifier = Modifier.padding(top = 38.dp)
                     ) {
-                            Text(
-                                text = stringResource(id = R.string.game_name),
-                                style = TextStyle(
-                                    fontSize = 20.sp,
-                                    lineHeight = 26.sp,
-                                    fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
-                                    fontWeight = FontWeight(700),
-                                    color = Color.White,
-                                    letterSpacing = 0.5.sp,
-                                )
+                        Text(
+                            text = stringResource(id = R.string.game_name),
+                            style = TextStyle(
+                                fontSize = 20.sp,
+                                lineHeight = 26.sp,
+                                fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
+                                fontWeight = FontWeight(700),
+                                color = Color.White,
+                                letterSpacing = 0.5.sp,
                             )
+                        )
 
                         Row (
                             verticalAlignment = Alignment.CenterVertically,
@@ -140,8 +149,18 @@ fun MainScreen() {
                     }
 
                 }
+                Spacer(modifier = Modifier.height(25.dp))
 
-                Spacer(modifier = Modifier.height(45.dp))
+                LazyRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    itemsIndexed(genresGame) {_, item ->
+                        CreateLabels(item)
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(25.dp))
 
                 Row {
                     Text(
@@ -369,13 +388,32 @@ fun MainScreen() {
 
                                 letterSpacing = 0.6.sp,
                             ))
-                        
+
                     }
                 }
-                }
+            }
 
         }
     }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+private fun CreateLabels(genre: Int) {
+    Chip(
+        onClick = {},
+        content = {
+            Text(
+                text = stringResource(id = genre),
+                color = Color(0xFF44A9F4)
+            )
+        },
+        colors = ChipDefaults.chipColors(
+            backgroundColor = Color(0x3D44A9F4)
+        ),
+        modifier = Modifier
+            .height(25.dp)
+    )
 }
 
 private fun writeLogs(){
