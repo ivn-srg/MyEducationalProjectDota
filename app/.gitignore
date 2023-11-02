@@ -1,1 +1,37 @@
-/build
+# Игнорировать файлы и директории сборки
+build/
+.gradle/
+local.properties
+.idea/
+
+# Игнорировать файлы проекта Android Studio
+.DS_Store
+.*.un~
+.*.swp
+
+# Игнорировать файлы конфигурации
+*.iml
+*.ipr
+*.iws
+.idea/workspace.xml
+.idea/tasks.xml
+
+# Игнорировать файлы, созданные плагинами Gradle
+.gradle/
+gradle-wrapper.jar
+gradle-wrapper.properties
+
+# Игнорировать файлы сборки и зависимости
+bin/
+out/
+.externalNativeBuild/
+
+# Игнорировать файлы временного хранения
+.*.lock
+.lock-wscript
+
+# Игнорировать файлы секретов, пароли, ключи
+keystore.properties
+debug.keystore
+release.keystore
+google-services.json
