@@ -31,11 +31,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myeducationalprojectdota.R
-import com.example.myeducationalprojectdota.SpacerHeight10
-import com.example.myeducationalprojectdota.SpacerHeight15
-import com.example.myeducationalprojectdota.SpacerHeight25
-import com.example.myeducationalprojectdota.SpacerWidth18
-import com.example.myeducationalprojectdota.SpacerWidth8
+import com.example.myeducationalprojectdota.dotaScreen.SpacerHeight10
+import com.example.myeducationalprojectdota.dotaScreen.SpacerHeight15
+import com.example.myeducationalprojectdota.dotaScreen.SpacerHeight25
+import com.example.myeducationalprojectdota.dotaScreen.SpacerWidth18
+import com.example.myeducationalprojectdota.dotaScreen.SpacerWidth8
 import com.example.myeducationalprojectdota.ui.theme.Colors
 
 

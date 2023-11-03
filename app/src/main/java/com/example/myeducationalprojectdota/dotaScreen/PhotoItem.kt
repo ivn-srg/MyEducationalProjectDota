@@ -1,4 +1,4 @@
-package com.example.myeducationalprojectdota
+package com.example.myeducationalprojectdota.dotaScreen
 
 data class PhotoItem(
     val id: Int,

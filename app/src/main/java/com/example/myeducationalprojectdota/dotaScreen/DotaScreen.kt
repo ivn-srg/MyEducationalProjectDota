@@ -1,4 +1,4 @@
-package com.example.myeducationalprojectdota
+package com.example.myeducationalprojectdota.dotaScreen
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -42,6 +42,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.myeducationalprojectdota.R
 import com.example.myeducationalprojectdota.comments.CommentsBlock
 import com.example.myeducationalprojectdota.ui.theme.Colors
 
@@ -158,7 +159,7 @@ private fun CreateLabels() {
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        itemsIndexed(genresGame) {_, item ->
+        itemsIndexed(genresGame) { _, item ->
             Chip(
                 onClick = {},
                 content = {
@@ -167,7 +168,7 @@ private fun CreateLabels() {
                         color = Colors.tagsTextColor,
                         style = TextStyle(
                             fontSize = 12.sp,
-                            fontFamily = FontFamily(Font(R.font.sk_modernist_mono)),
+                            fontFamily = FontFamily(Font(R.font.montserrat_medium)),
                             fontWeight = FontWeight(500),
                         )
                     )
@@ -204,7 +205,7 @@ fun DrawMedia() {
     LazyRow(
         modifier = Modifier.fillMaxWidth()
     ) {
-        itemsIndexed(photos) {_, photo ->
+        itemsIndexed(photos) { _, photo ->
             Box (
                 modifier = Modifier
                     .padding(end = 15.dp)

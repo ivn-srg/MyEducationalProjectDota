@@ -1,4 +1,4 @@
-package com.example.myeducationalprojectdota
+package com.example.myeducationalprojectdota.dotaScreen
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
