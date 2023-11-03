@@ -49,7 +49,7 @@ import com.example.myeducationalprojectdota.ui.theme.Colors
 
 val photos = mutableListOf(
         PhotoItem(id = R.drawable.bg_video_preview1, isVideo = true),
-        PhotoItem(id = R.drawable.bg_video_preview2),
+        PhotoItem(id = R.drawable.bg_video_preview2, isVideo = true),
         PhotoItem(id = R.drawable.bg_photo_preview1),
         PhotoItem(id = R.drawable.bg_photo_preview2)
     )
@@ -224,7 +224,7 @@ fun DrawMedia() {
                             .clip(CircleShape)
                             .size(40.dp)
                             .align(Alignment.Center)
-                            .background(Color(0x2DFFFFFF))
+                            .background(Color(0x4DFFFFFF))
 
                     )
                     Icon(
