@@ -44,7 +44,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myeducationalprojectdota.R
 import com.example.myeducationalprojectdota.comments.CommentsBlock
-import com.example.myeducationalprojectdota.ui.theme.Colors
+import com.example.myeducationalprojectdota.ui.theme.BorderLogoColor
+import com.example.myeducationalprojectdota.ui.theme.ColorPlainText
+import com.example.myeducationalprojectdota.ui.theme.InactiveStarColor
+import com.example.myeducationalprojectdota.ui.theme.NumersReviewColor
+import com.example.myeducationalprojectdota.ui.theme.Typography
+import com.example.myeducationalprojectdota.ui.theme.Yellow
+import com.example.myeducationalprojectdota.ui.theme.tagsBgColor
+import com.example.myeducationalprojectdota.ui.theme.tagsTextColor
 
 
 val photos = mutableListOf(
@@ -63,29 +70,29 @@ fun DotaScreen() {
         .padding(top = 305.dp)
     ) {
         Row {
-            DrawLogo()
+            Logo()
 
             SpacerWidth12()
 
-            DrawGameName()
+            GameName()
         }
         SpacerHeight25()
 
-        CreateLabels()
+        Labels()
 
         SpacerHeight25()
 
-        DrawGameDescription()
+        GameDescription()
 
         SpacerHeight40()
 
-        DrawMedia()
+        MediaList()
 
         SpacerHeight25()
 
         CommentsBlock()
 
-        DrawInstallButton()
+        InstallButton()
     }
 }
 
@@ -93,14 +100,14 @@ fun DotaScreen() {
 
 
 @Composable
-fun DrawLogo() {
+fun Logo() {
     Box (
         modifier = Modifier
             .clip(RoundedCornerShape(20.dp))
             .width(88.dp)
             .height(88.dp)
             .background(Color.Black)
-            .border(width = 2.dp, color = Colors.BorderLogoColor),
+            .border(width = 2.dp, color = BorderLogoColor),
     ) {
         Image(painter = painterResource(id = R.drawable.bg_logo),
             contentDescription = "dota_logo",
@@ -112,20 +119,15 @@ fun DrawLogo() {
 }
 
 @Composable
-fun DrawGameName() {
+fun GameName() {
     Column(
         modifier = Modifier.padding(top = 38.dp)
     ) {
         Text(
             text = stringResource(id = R.string.game_name),
-            style = TextStyle(
-                fontSize = 20.sp,
-                lineHeight = 26.sp,
-                fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
-                fontWeight = FontWeight(700),
-                color = Color.White,
-                letterSpacing = 0.5.sp,
-            )
+            fontSize = 20.sp,
+            color = Color.White,
+            style = Typography.titleLarge
         )
 
         Row (
@@ -134,18 +136,14 @@ fun DrawGameName() {
         ) {
             RatingBar(
                 rating = 4.0f,
-                activeColor = Colors.Yellow,
-                inactiveColor = Colors.InactiveStarColor,
+                activeColor = Yellow,
+                inactiveColor = InactiveStarColor,
                 size = 13.dp)
             Text(
                 text = stringResource(id = R.string.number_of_reviews_short),
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
-                    fontWeight = FontWeight(400),
-                    color = Colors.NumersReviewColor,
-                    letterSpacing = 0.5.sp,
-                ),
+                fontSize = 12.sp,
+                color = NumersReviewColor,
+                style = Typography.titleSmall,
                 modifier = Modifier.padding(start = 5.dp)
             )
         }
@@ -154,7 +152,7 @@ fun DrawGameName() {
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-private fun CreateLabels() {
+private fun Labels() {
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -165,16 +163,13 @@ private fun CreateLabels() {
                 content = {
                     Text(
                         text = stringResource(id = item),
-                        color = Colors.tagsTextColor,
-                        style = TextStyle(
-                            fontSize = 12.sp,
-                            fontFamily = FontFamily(Font(R.font.montserrat_medium)),
-                            fontWeight = FontWeight(500),
-                        )
+                        color = tagsTextColor,
+                        fontSize = 12.sp,
+                        style = Typography.labelSmall
                     )
                 },
                 colors = ChipDefaults.chipColors(
-                    backgroundColor = Colors.tagsBgColor
+                    backgroundColor = tagsBgColor
                 ),
                 modifier = Modifier
                     .height(25.dp)
@@ -184,24 +179,19 @@ private fun CreateLabels() {
 }
 
 @Composable
-fun DrawGameDescription() {
+fun GameDescription() {
     Row {
         Text(
             text = stringResource(id = R.string.game_description),
-            modifier = Modifier,
-            style = TextStyle(
-                fontSize = 12.sp,
-                lineHeight = 19.sp,
-                fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
-                fontWeight = FontWeight(400),
-                color = Colors.ColorPlainText
-            )
+            fontSize = 12.sp,
+            color = ColorPlainText,
+            style = Typography.titleSmall
         )
     }
 }
 
 @Composable
-fun DrawMedia() {
+fun MediaList() {
     LazyRow(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -227,13 +217,20 @@ fun DrawMedia() {
                             .background(Color(0x4DFFFFFF))
 
                     )
-                    Icon(
-                        imageVector = Icons.Default.PlayArrow,
-                        contentDescription = null,
-                        tint = Color.White,
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_videoplayer),
+                        contentDescription = "Иконка проигрывателя",
                         modifier = Modifier
                             .align(Alignment.Center)
+                            .size(12.dp)
                     )
+//                    Icon(
+//                        imageVector = Icons.Default.PlayArrow,
+//                        contentDescription = null,
+//                        tint = Color.White,
+//                        modifier = Modifier
+//                            .align(Alignment.Center)
+//                    )
                 }
             }
         }
@@ -258,7 +255,7 @@ fun RatingBar(rating: Float, maxRating: Int = 5, activeColor: Color, inactiveCol
     }
 }
 @Composable
-fun DrawInstallButton() {
+fun InstallButton() {
     val context = LocalContext.current.applicationContext
 
     Row (
@@ -273,18 +270,15 @@ fun DrawInstallButton() {
                 .fillMaxWidth()
                 .height(64.dp)
                 .background(
-                    color = Colors.Yellow,
+                    color = Yellow,
                     shape = RoundedCornerShape(size = 12.dp)
                 )
         ) {
-            Text(text = stringResource(id = R.string.text_of_button),
-                style = TextStyle(
-                    fontSize = 24.sp,
-                    fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
-                    fontWeight = FontWeight(700),
-                    color = Color.Black,
-                    letterSpacing = 0.6.sp,
-                )
+            Text(
+                text = stringResource(id = R.string.text_of_button),
+                fontSize = 24.sp,
+                color = Color.Black,
+                style = Typography.titleLarge
             )
         }
     }

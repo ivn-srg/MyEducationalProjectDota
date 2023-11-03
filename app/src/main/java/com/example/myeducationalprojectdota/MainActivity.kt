@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import com.example.myeducationalprojectdota.dotaScreen.DotaScreen
+import com.example.myeducationalprojectdota.ui.theme.BgColor
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,17 +38,17 @@ class MainActivity : ComponentActivity() {
 fun MainScreen() {
     Surface  {
         Box (modifier = Modifier
-            .background(Color(0xFF050B18))
+            .background(BgColor)
             .verticalScroll(rememberScrollState())
         ) {
-            DrawHeaderImage()
+            HeaderImage()
             DotaScreen()
         }
     }
 }
 
 @Composable
-fun DrawHeaderImage() {
+fun HeaderImage() {
     Image(painter = painterResource(id = R.drawable.bg_header),
         contentDescription = "header",
         modifier = Modifier
@@ -57,7 +58,10 @@ fun DrawHeaderImage() {
     )
 }
 
-@Preview(showBackground = true)
+@Preview(
+    heightDp = 1600,
+    showBackground = true
+)
 @Composable
 fun MainScreenPreview() {
     MainScreen()

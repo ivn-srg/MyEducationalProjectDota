@@ -36,7 +36,11 @@ import com.example.myeducationalprojectdota.dotaScreen.SpacerHeight15
 import com.example.myeducationalprojectdota.dotaScreen.SpacerHeight25
 import com.example.myeducationalprojectdota.dotaScreen.SpacerWidth18
 import com.example.myeducationalprojectdota.dotaScreen.SpacerWidth8
-import com.example.myeducationalprojectdota.ui.theme.Colors
+import com.example.myeducationalprojectdota.ui.theme.ColorPlainText
+import com.example.myeducationalprojectdota.ui.theme.DividerColor
+import com.example.myeducationalprojectdota.ui.theme.InactiveStarColor
+import com.example.myeducationalprojectdota.ui.theme.Typography
+import com.example.myeducationalprojectdota.ui.theme.Yellow
 
 
 val comments = mutableListOf(
@@ -51,47 +55,46 @@ val comments = mutableListOf(
         AuthorNameId = R.string.commenterName2,
         sendingDateId = R.string.date,
         commentContentId = R.string.comment2
+    ),
+    CommentItem(
+        avatarImageId = R.drawable.avatar_3,
+        AuthorNameId = R.string.commenterName3,
+        sendingDateId = R.string.date2,
+        commentContentId = R.string.comment3
     )
 )
 @Composable
 fun CommentsBlock() {
-    DrawReviewTitle()
+    ReviewTitle()
 
     SpacerHeight10()
 
-    DrawReviewBar()
+    ReviewBar()
 
     SpacerHeight25()
 
-    DrawComments()
+    CommentsList()
 }
 
 
 @Composable
-fun DrawReviewTitle() {
+fun ReviewTitle() {
     Text(
         text = stringResource(id = R.string.review_title),
-        style = TextStyle(
-            fontSize = 16.sp,
-            fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
-            fontWeight = FontWeight(700),
-            color = Color.White,
-            letterSpacing = 0.6.sp,
-        )
+        fontSize = 16.sp,
+        color = Color.White,
+        style = Typography.titleLarge
     )
 }
 
 @Composable
-fun DrawReviewBar() {
+fun ReviewBar() {
     Row {
         Text(
             text = stringResource(id = R.string.review_value),
-            style = TextStyle(
-                fontSize = 48.sp,
-                fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
-                fontWeight = FontWeight(700),
-                color = Color.White,
-            )
+            fontSize = 48.sp,
+            color = Color.White,
+            style = Typography.titleLarge
         )
         SpacerWidth18()
 
@@ -107,20 +110,16 @@ fun DrawReviewBar() {
             ){
                 RatingBar(
                     rating = 4.0f,
-                    activeColor = Colors.Yellow,
-                    inactiveColor = Colors.InactiveStarColor,
+                    activeColor = Yellow,
+                    inactiveColor = InactiveStarColor,
                     size = 14.dp)
 
             }
             Text(
                 text = stringResource(id = R.string.number_of_reviews_long),
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
-                    fontWeight = FontWeight(400),
-                    color = Colors.ColorPlainText,
-                    letterSpacing = 0.5.sp,
-                )
+                fontSize = 12.sp,
+                color = ColorPlainText,
+                style = Typography.titleSmall
             )
         }
     }
@@ -145,7 +144,7 @@ fun RatingBar(rating: Float, maxRating: Int = 5, activeColor: Color, inactiveCol
 }
 
 @Composable
-fun DrawComments() {
+fun CommentsList() {
     for (i in 0..comments.size-1) {
         Row {
             Image(
@@ -162,24 +161,16 @@ fun DrawComments() {
             Column {
                 Text(
                     text = stringResource(id = comments[i].AuthorNameId),
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
-                        fontWeight = FontWeight(400),
-                        color = Color.White,
-                        letterSpacing = 0.5.sp,
-                    )
+                    fontSize = 16.sp,
+                    color = Color.White,
+                    style = Typography.titleSmall
                 )
                 SpacerHeight10()
                 Text(
                     text = stringResource(id = comments[i].sendingDateId),
-                    style = TextStyle(
-                        fontSize = 12.sp,
-                        fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
-                        fontWeight = FontWeight(400),
-                        color = Colors.ColorPlainText,
-                        letterSpacing = 0.5.sp,
-                    )
+                    fontSize = 12.sp,
+                    color = ColorPlainText,
+                    style = Typography.titleSmall
                 )
             }
         }
@@ -187,19 +178,14 @@ fun DrawComments() {
 
         Text(
             text = stringResource(id = comments[i].commentContentId),
-            style = TextStyle(
-                fontSize = 12.sp,
-                lineHeight = 20.sp,
-                fontFamily = FontFamily(Font(R.font.sk_modernist_regular)),
-                fontWeight = FontWeight(400),
-                color = Colors.ColorPlainText, //Color(0xFFA8ADB7),
-                letterSpacing = 0.5.sp,
-            )
+            fontSize = 12.sp,
+            color = ColorPlainText,
+            style = Typography.titleSmall
         )
 
         if (i < comments.size - 1) {
             Divider(
-                color = Colors.DividerColor,
+                color = DividerColor,
                 thickness = 1.dp,
                 modifier = Modifier
                     .fillMaxWidth()

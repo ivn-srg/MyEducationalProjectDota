@@ -17,6 +17,9 @@
     <string name="comment2">“Once you start to learn its secrets, there’s a wild and exciting variety of play here that’s unmatched, even by its peers."</string>
     <string name="text_of_button">Install</string>
     <string name="click_text">The button has tapped</string>
+    <string name="comment3">“That\'s just nice. I am glad to see it"</string>
+    <string name="commenterName3">Ivanov Sergey</string>
+    <string name="date2">November 3, 2023</string>
 
 
 </resources>
